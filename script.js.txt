@@ -1,0 +1,34 @@
+// نمونه‌ی ساده‌ی یکپارچه‌سازی استرایپ
+// توجه: در محیط تولید، نیاز به سرور پشتیبان جهت ایجاد PaymentIntent یا استفاده از روش امن تری دارید.
+// کلید 'your-publishable-key' را با کلید واقعی استرایپ جایگزین کنید.
+var stripe = Stripe('your-publishable-key');
+var elements = stripe.elements();
+var card = elements.create('card');
+card.mount('#card-element');
+
+card.on('change', function(event) {
+  var displayError = document.getElementById('card-errors');
+  if (event.error) {
+    displayError.textContent = event.error.message;
+  } else {
+    displayError.textContent = '';
+  }
+});
+
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(ev) {
+  ev.preventDefault();
+  // در اینجا باید به سرور خود متصل شوید تا یک PaymentIntent ایجاد شود یا پرداخت را تایید کنید.
+  stripe.createToken(card).then(function(result) {
+    if (result.error) {
+      // در صورت بروز خطا، پیام را نمایش دهید.
+      var errorElement = document.getElementById('card-errors');
+      errorElement.textContent = result.error.message;
+    } else {
+      // توکن دریافت شده را به سرور خود ارسال کنید.
+      console.log('توکن استرایپ دریافت شد:', result.token);
+      // می‌توانید با استفاده از AJAX توکن را به سرور ارسال و پرداخت را پردازش کنید.
+      alert('پرداخت موفقیت‌آمیز بود (نمونه نمایش).');
+    }
+  });
+});

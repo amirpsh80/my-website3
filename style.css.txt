@@ -1,0 +1,37 @@
+body {
+  font-family: 'Tahoma', sans-serif;
+  background-color: #f8f9fa;
+}
+
+/* نوار منو با تم آبی */
+.navbar {
+  background-color: #007bff;
+}
+.navbar-brand, .nav-link {
+  color: #fff !important;
+}
+
+/* بخش هیرو */
+.hero {
+  background-color: #007bff;
+  color: #fff;
+  padding: 100px 0;
+  text-align: center;
+}
+
+/* نمونه کارها */
+.portfolio-item {
+  margin-bottom: 30px;
+}
+
+/* بخش پرداخت */
+.payment-section {
+  padding: 50px 0;
+  background-color: #e9ecef;
+}
+
+/* فوتر */
+footer {
+  background-color: #007bff;
+  color: #fff;
+}
